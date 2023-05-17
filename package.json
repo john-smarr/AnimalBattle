@@ -1,0 +1,11 @@
+{
+  "name": "animalbattle",
+  "version": "1.0.0",
+  "description": "App for battling user created animal pictures",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "J Smarr",
+  "license": "ISC"
+}
