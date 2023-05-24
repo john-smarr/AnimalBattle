@@ -1,30 +1,33 @@
-const http = require("http")
+const http = require("http");
 require("dotenv").config();
 require("./config/database").connect();
 const bcrypt = require("bcryptjs");
 const express = require("express");
-const jwt = require("jsonwebtoken")
-
-class Animal {
-    constructor(name, pic) {
-        this.name = name;
-        this.pic = pic;
-    }
-    getName() {
-        return this.name
-    }
-    getPic() {
-        return this.pic
-        if(typeof window === "object") {
-            return document.getElementById(this.pic)
-        } else {
-            return `${this.name} pic is supposed to go here`
-        }
-    }
-}
+const jwt = require("jsonwebtoken");
+const auth = require("./middelware/auth");
+const cors = require("cors");
 const app = express();
 
-app.use(express.json());
+app.use(express.json({limit: "50mb"}));
+
+
+// class Animal {
+//     constructor(name, pic) {
+//         this.name = name;
+//         this.pic = pic;
+//     }
+//     getName() {
+//         return this.name
+//     }
+//     getPic() {
+//         return this.pic
+//         if(typeof window === "object") {
+//             return document.getElementById(this.pic)
+//         } else {
+//             return `${this.name} pic is supposed to go here`
+//         }
+//     }
+// }
 
 //Logic goes here
 
@@ -82,5 +85,15 @@ app.post("/register", async (req,res)=>{
 app.post("/login", (req,res) => {
 
 });
+
+//Authentication
+const corsOptions = {
+    origin: 'http://animalbattle.com',
+    optionsSuccessStatus: 200 //for legacy browsers
+}
+
+app.get('/welcome', cors(corsOptions), auth, (req,res) => {
+    res.status(200).send("Welcome to animal battling! Choose your fighter: ")
+})
 
 module.exports = app;
