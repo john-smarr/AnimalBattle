@@ -96,4 +96,21 @@ app.get('/welcome', cors(corsOptions), auth, (req,res) => {
     res.status(200).send("Welcome to animal battling! Choose your fighter: ")
 })
 
+//Upload an animal
+app.post("/create", async (req,res) => {
+    const { name, type, moveSet, image } = req.body
+
+    //make sure user includes name
+    if (!name) {
+        res.status(400).send("You must pick an epic name for your animal!")
+    } else {
+        const animal = Animal.create({
+            name: name,
+            type: type,
+            moveSet: moveSet,
+            image: image
+        })
+    }
+})
+
 module.exports = app;
