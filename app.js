@@ -33,13 +33,15 @@ app.use(express.json({limit: "50mb"}));
 
 //Importing user contxt
 const User = require("./model/user");
+const Animal = require("./model/animal");
 
 //Register
 app.post("/register", async (req,res)=>{
-    try {
-        //get user input
-        const { firstName, lastName, email, password } = req.body;
 
+    //get user input
+    const { firstName, lastName, email, password } = req.body;
+    
+    try {
         //validate user input
         if (!(email && password && firstName && lastName)) {
             res.status(400).send("All fields are required");
@@ -101,15 +103,20 @@ app.post("/create", async (req,res) => {
     const { name, type, moveSet, image } = req.body
 
     //make sure user includes name
-    if (!name) {
-        res.status(400).send("You must pick an epic name for your animal!")
-    } else {
-        const animal = Animal.create({
-            name: name,
-            type: type,
-            moveSet: moveSet,
-            image: image
-        })
+    try {
+        if (!name) {
+            res.status(400).send("You must pick an epic name for your animal!")
+        } else {
+            const animal = await Animal.create({
+                name: name,
+                type: type,
+                moveSet: moveSet,
+                image: image
+            })
+        }
+        res.status(201).json(animal);
+    } catch (err) {
+        console.log(err)
     }
 })
 
