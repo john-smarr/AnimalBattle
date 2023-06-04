@@ -1,0 +1,51 @@
+body {
+    background-color: ivory;
+}
+h1 {
+    color: black;
+    text-align: center;
+}
+p {
+    text-align: center;
+}
+.flex-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    opacity: 0.75;
+    height: 100%;
+}
+.animal-selector {
+    width: 600px;
+    height: 400px;
+    background-color: gray;
+    margin-bottom: 50px;
+}
+.photo-upload {
+    text-align: center;
+    width: 200px;
+    height: 200px;
+    background-color: gray;
+    opacity: 0.8;
+}
+.row {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+.upload-logo {
+    display: flex;
+    width: 165px;
+    height: 40px;
+    background-color: gray;
+}
+.upload-button{
+    width: 100%;
+    color: ivory;
+    background-color: black;
+    margin: 2px;
+}
