@@ -17,6 +17,10 @@ app.get('/about',(req, res)=>{
     res.send("Created and maintained by John Smarr. This project was made using Node.js and Express as well as HTML, CSS, and Javascript. ")
 })
 
+app.get('/profile',(req,res)=>{
+    res.sendFile(path.resolve(__dirname, './pages/profile.html'))
+})
+
 app.all('*', (req, res)=> {
     res.status(404).send('resource not found')
 })
@@ -24,3 +28,5 @@ app.all('*', (req, res)=> {
 app.listen(5000, ()=>{
     console.log("listening on 5000....")
 })
+
+app.post('/login', )
